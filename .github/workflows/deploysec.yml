@@ -36,8 +36,5 @@ jobs:
           echo "=== Current Directory ==="
           pwd
 
-          echo "=== Repository ==="
-          ls -la ./leaky-repo
-
           echo "=== Running Gitleaks ==="
           gitleaks dir ./leaky-repo --redact --verbose
