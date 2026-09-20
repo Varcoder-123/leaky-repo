@@ -31,9 +31,9 @@ jobs:
 
           gitleaks version
 
-      - name: Run Gitleaks
-        run: |
-          echo "=== Current Directory ==="
-          pwd
-          echo "=== Running Gitleaks ==="
-          gitleaks dir . --redact --verbose
+     - name: Scan Repository
+       run: |
+         gitleaks git . \
+           --config ./gitleaks.toml \
+           --redact \
+           --verbose \
