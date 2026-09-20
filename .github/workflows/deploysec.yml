@@ -35,6 +35,5 @@ jobs:
         run: |
           echo "=== Current Directory ==="
           pwd
-	  ls
           echo "=== Running Gitleaks ==="
           gitleaks dir . --redact --verbose
