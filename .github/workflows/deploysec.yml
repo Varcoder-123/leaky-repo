@@ -19,26 +19,6 @@ jobs:
           fetch-depth: 0
 
       - name: Run Gitleaks
-        id: gitleaks
-        run: |
-          set +e
-
-          gitleaks dir .
-
-          EXIT_CODE=$?
-
-          echo "Gitleaks exit code: $EXIT_CODE"
-
-          if [ "$EXIT_CODE" -eq 0 ]; then
-            echo "✅ No secrets detected"
-          elif [ "$EXIT_CODE" -eq 1 ]; then
-            echo "❌ Secrets detected!"
-          else
-            echo "❌ Gitleaks encountered an error"
-          fi
-
-          echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
-
-          exit "$EXIT_CODE"
-
-
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
