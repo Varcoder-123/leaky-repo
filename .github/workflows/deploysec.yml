@@ -18,9 +18,26 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Gitleaks
+        run: |
+          VERSION="8.30.1"
+
+          curl -sSfL \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz" \
+            -o gitleaks.tar.gz
+
+          tar -xzf gitleaks.tar.gz gitleaks
+          sudo mv gitleaks /usr/local/bin/gitleaks
+
+          gitleaks version
+
       - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v3
-	run: |
-	pwd
-    	ls -la
-    	gitleaks dir ./leaky-repo --redact --verbose
+        run: |
+          echo "=== Current Directory ==="
+          pwd
+
+          echo "=== Repository ==="
+          ls -la ./leaky-repo
+
+          echo "=== Running Gitleaks ==="
+          gitleaks dir ./leaky-repo --redact --verbose
