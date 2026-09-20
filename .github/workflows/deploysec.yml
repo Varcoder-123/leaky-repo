@@ -31,9 +31,9 @@ jobs:
 
           gitleaks version
 
-     - name: Scan Repository
-       run: |
-         gitleaks git . \
-           --config ./gitleaks.toml \
-           --redact \
-           --verbose \
+      - name: Scan Repository
+        run: |
+          gitleaks git . \
+            --config ./gitleaks.toml \
+            --redact \
+            --verbose
